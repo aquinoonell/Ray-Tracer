@@ -28,7 +28,7 @@ impl Vec3 {
     }
 
     pub fn length_squared(&self) -> f64{
-        self.e[0] * self.e[0] + self.e[1] * self.e[0] + self.e[2] * self.e[2]
+        self.e[0] * self.e[0] + self.e[1] * self.e[1] + self.e[2] * self.e[2]
     }
 }
 
@@ -78,7 +78,7 @@ impl Add for Vec3 {
     type Output = Vec3;
 
     fn add(self, v: Vec3) -> Vec3{
-        Vec3::new(self.x() + v.x(), self.y() + v.y(), self.z() + v.y())
+        Vec3::new(self.x() + v.x(), self.y() + v.y(), self.z() + v.z())
     }
 }
 
