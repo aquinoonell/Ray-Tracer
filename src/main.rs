@@ -94,7 +94,7 @@ fn main() {
     )));
     world.add(Box::new(Sphere::new(
         Point3::new(-1.0, 0.0, -1.0),
-        -0.4,
+        -0.45,
         material_left,
     )));
     world.add(Box::new(Sphere::new(
@@ -105,7 +105,13 @@ fn main() {
 
     // Camera
 
-    let cam = Camera::new();
+    let cam = Camera::new(
+        Point3::new(-2.0, 2.0, 1.0),
+        Point3::new(0.0, 0.0, -1.0),
+        Vec3::new(0.0, 1.0, 0.0),
+        30.0,
+        ASPECT_RATIO,
+        );
     let viewport_height = 2.0;
     let viewport_width = ASPECT_RATIO * viewport_height;
     let focal_length = 1.0;
