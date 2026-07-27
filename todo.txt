@@ -4,3 +4,4 @@
 2026-07-26 Use the builder pattern to initialize the Camera struct +ray_tracer
 2026-07-26 Write some tests using the test attribute +ray_tracer
 2026-07-26 Use the bench attribute or the criterion crate to do benchmarking +ray_tracer
+(A) 2026-07-26 Test +ray_tracer due:2026-07-26
