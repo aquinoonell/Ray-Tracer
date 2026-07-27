@@ -1,5 +1,5 @@
 use crate::common;
-use std::fmt::{Display, Formatter, Result, write};
+use std::fmt::{Display, Formatter, Result};
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub};
 
 #[derive(Copy, Clone, Default)]

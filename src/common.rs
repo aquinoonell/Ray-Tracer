@@ -1,4 +1,3 @@
-use rand::*;
 // Constants
 
 pub use std::f64::consts::PI;

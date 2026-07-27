@@ -1,1 +1,0 @@
-x 2026-07-26 2026-07-26 2026-07-26 Complete the integration for Defocus Blur based on the book +ray_tracer @onell due:2026-07-27

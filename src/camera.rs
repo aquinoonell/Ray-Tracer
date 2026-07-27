@@ -1,4 +1,3 @@
-use std::vec;
 
 use crate::common;
 use crate::ray::Ray;
