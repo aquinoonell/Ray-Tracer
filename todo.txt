@@ -1,1 +1,7 @@
-(A) 2026-07-26 Complete the integration for Defocus Blur based on the book +ray_tracer @onell due:2026-07-27
+(A) 2026-07-26  Implement new feature using the information from the book +ray_tracer @don due:2026-07-27
+2026-07-26 Parallelize the program using the rayon crate +ray_tracer
+2026-07-26 Use Option<T> to return optional data in Hittable::hit() and Material::scatter() +ray_tracer
+2026-07-26 Use the indicatif crate to show progress bar +ray_tracer
+2026-07-26 Use the builder pattern to initialize the Camera struct +ray_tracer
+2026-07-26 Write some tests using the test attribute +ray_tracer
+2026-07-26 Use the bench attribute or the criterion crate to do benchmarking +ray_tracer
