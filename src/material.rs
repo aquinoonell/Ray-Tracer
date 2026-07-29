@@ -20,9 +20,9 @@ pub struct Lambertian {
 }
 
 impl Lambertian {
-   pub fn new(a: Color) -> Lambertian {
-       Lambertian {albedo: a}
-   }
+    pub fn new(a: Color) -> Lambertian {
+        Lambertian { albedo: a }
+    }
 }
 
 impl Material for Lambertian {
@@ -32,8 +32,7 @@ impl Material for Lambertian {
         rec: &HitRecord,
         attenuation: &mut Color,
         scattered: &mut Ray,
-    ) -> bool
-    {
+    ) -> bool {
         let mut scatter_direction = rec.normal + vec3::random_unit_vector();
 
         // Catch degenerate scatter direction
@@ -54,18 +53,21 @@ pub struct Metal {
 
 impl Metal {
     pub fn new(a: Color, f: f64) -> Metal {
-        Metal {albedo: a, fuzz: if f < 1.0 {f} else {1.0},}
+        Metal {
+            albedo: a,
+            fuzz: if f < 1.0 { f } else { 1.0 },
+        }
     }
 }
 
-impl Material for Metal{
+impl Material for Metal {
     fn scatter(
         &self,
         r_in: &Ray,
         rec: &HitRecord,
         attenuation: &mut Color,
         scattered: &mut Ray,
-    ) -> bool{
+    ) -> bool {
         let reflected = vec3::reflect(vec3::unit_vector(r_in.direction()), rec.normal);
 
         *attenuation = self.albedo;
@@ -100,34 +102,28 @@ impl Material for Dielectric {
         rec: &HitRecord,
         attenuation: &mut Color,
         scattered: &mut Ray,
-    ) -> bool
-    {
-       let refraction_ratio = if rec.front_face {
-           1.0 / self.ir
-       }else {
-          self.ir 
-       };
+    ) -> bool {
+        let refraction_ratio = if rec.front_face {
+            1.0 / self.ir
+        } else {
+            self.ir
+        };
 
-       let unit_direction = vec3::unit_vector(r_in.direction());
-       let cos_theta = f64::min(vec3::dot(-unit_direction, rec.normal), 1.0);
-       let sin_theta = f64::sqrt(1.0 - cos_theta * cos_theta);
+        let unit_direction = vec3::unit_vector(r_in.direction());
+        let cos_theta = f64::min(vec3::dot(-unit_direction, rec.normal), 1.0);
+        let sin_theta = f64::sqrt(1.0 - cos_theta * cos_theta);
 
-       let cannot_refract = refraction_ratio * sin_theta > 1.0;
-       let direction = if cannot_refract 
-           || Self::reflectance(cos_theta, refraction_ratio) > common::random_double()
-       {
-        vec3::reflect(unit_direction, rec.normal)
-       }else {
-           vec3::refract(unit_direction, rec.normal, refraction_ratio)
-       };
+        let cannot_refract = refraction_ratio * sin_theta > 1.0;
+        let direction = if cannot_refract
+            || Self::reflectance(cos_theta, refraction_ratio) > common::random_double()
+        {
+            vec3::reflect(unit_direction, rec.normal)
+        } else {
+            vec3::refract(unit_direction, rec.normal, refraction_ratio)
+        };
 
-
-       *attenuation = Color::new(1.0, 1.0, 1.0);
-       *scattered = Ray::new(rec.p, direction);
-       true
+        *attenuation = Color::new(1.0, 1.0, 1.0);
+        *scattered = Ray::new(rec.p, direction);
+        true
     }
 }
-
-
-
-

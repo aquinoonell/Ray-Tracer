@@ -1,10 +1,10 @@
 use crate::material::Material;
-use std::rc::Rc;
 use crate::ray::Ray;
 use crate::vec3::{self, Point3, Vec3};
+use std::rc::Rc;
 
 #[derive(Clone, Default)]
-pub struct HitRecord{
+pub struct HitRecord {
     pub p: Point3,
     pub normal: Vec3,
     pub t: f64,
@@ -21,12 +21,11 @@ impl HitRecord {
         self.front_face = vec3::dot(r.direction(), outward_normal) < 0.0;
         self.normal = if self.front_face {
             outward_normal
-        }else {
-                -outward_normal
-            };
+        } else {
+            -outward_normal
+        };
     }
 }
-
 
 pub trait Hittable {
     fn hit(&self, ray: &Ray, t_min: f64, t_max: f64, rec: &mut HitRecord) -> bool;

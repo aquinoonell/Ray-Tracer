@@ -5,11 +5,10 @@ use crate::material::Material;
 use crate::ray::Ray;
 use crate::vec3::{self, Point3};
 
-
-pub struct Sphere{
+pub struct Sphere {
     center: Point3,
     radius: f64,
-    mat: Rc<dyn  Material>,
+    mat: Rc<dyn Material>,
 }
 
 impl Sphere {
@@ -37,7 +36,7 @@ impl Hittable for Sphere {
 
         // Find the nearest root that lies in the acceptable range
         let mut root = (-half_b - sqrt_d) / a;
-        if root <= t_min  || t_max <= root {
+        if root <= t_min || t_max <= root {
             root = (-half_b + sqrt_d) / a;
             if root <= t_min || t_max <= root {
                 return false;
