@@ -1,6 +1,4 @@
-(A) 2026-07-26 Parallelize the program using the rayon crate +ray_tracer due:2026-07-31
 2026-07-26 Use Option<T> to return optional data in Hittable::hit() and Material::scatter() +ray_tracer
 (Z) 2026-07-26 Use the indicatif crate to show progress bar +ray_tracer
 2026-07-26 Use the builder pattern to initialize the Camera struct +ray_tracer
 2026-07-26 Write some tests using the test attribute +ray_tracer
-x 2026-07-27 2026-07-26 Use the bench attribute or the criterion crate to do benchmarking +ray_tracer

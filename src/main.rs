@@ -135,7 +135,7 @@ fn main() {
     //  World
 
     //let mut world = HittableList::new();
-    let mut world = random_scene();
+    let world = random_scene();
 
     // Camera
 

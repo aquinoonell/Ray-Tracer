@@ -1,3 +1,5 @@
 x 2026-07-26 2026-07-26 Push to git +ray_tracer due:2026-07-31
 x 2026-07-26 2026-07-26 Create documentation +ray_tracer
 x 2026-07-27 2026-07-26 Test +ray_tracer due:2026-07-26
+x 2026-07-30 2026-07-26 Parallelize the program using the rayon crate +ray_tracer due:2026-07-31
+x 2026-07-27 2026-07-26 Use the bench attribute or the criterion crate to do benchmarking +ray_tracer
