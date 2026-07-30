@@ -15,6 +15,7 @@ use hittable_list::HittableList;
 use material::{Dielectric, Lambertian, Metal};
 use rand::Rng;
 use ray::Ray;
+use rayon::prelude::*;
 use sphere::Sphere;
 use std::io;
 use std::rc::Rc;
@@ -198,14 +199,21 @@ fn main() {
     print!("P3\n{} {}\n255\n", IMAGE_WIDTH, IMAGE_HEIGHT);
 
     for j in (0..IMAGE_HEIGHT).rev() {
-        for i in 0..IMAGE_WIDTH {
-            let mut pixel_color = Color::new(0.0, 0.0, 0.0);
-            for _ in 0..SAMPLES_PER_PIXEL {
-                let u = (i as f64 + common::random_double()) / (IMAGE_WIDTH - 1) as f64;
-                let v = (j as f64 + common::random_double()) / (IMAGE_HEIGHT - 1) as f64;
-                let r = cam.get_ray(u, v);
-                pixel_color += ray_color(&r, &world, MAX_DEPTH);
-            }
+        eprint!("\rScanlines remaining: {}", j);
+        let pixel_colors: Vec<_> = (0..IMAGE_WIDTH)
+            .into_par_iter()
+            .map(|i| {
+                let mut pixel_color = Color::new(0.0, 0.0, 0.0);
+                for _ in 0..SAMPLES_PER_PIXEL {
+                    let u = (i as f64 + common::random_double()) / (IMAGE_WIDTH - 1) as f64;
+                    let v = (j as f64 + common::random_double()) / (IMAGE_HEIGHT - 1) as f64;
+                    let r = cam.get_ray(u, v);
+                    pixel_color += ray_color(&r, &world, MAX_DEPTH);
+                }
+                pixel_color
+            })
+            .collect();
+        for pixel_color in pixel_colors {
             colors::write_color(&mut io::stdout(), pixel_color, SAMPLES_PER_PIXEL);
         }
     }
