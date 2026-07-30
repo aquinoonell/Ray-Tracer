@@ -1,5 +1,4 @@
 use std::sync::Arc;
-use std::rc::Rc;
 
 use crate::hittable::{HitRecord, Hittable};
 use crate::material::Material;
