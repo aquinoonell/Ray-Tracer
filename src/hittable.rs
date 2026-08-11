@@ -3,18 +3,17 @@ use crate::ray::Ray;
 use crate::vec3::{self, Point3, Vec3};
 use std::sync::Arc;
 
-#[derive(Clone, Default)]
 pub struct HitRecord {
     pub p: Point3,
     pub normal: Vec3,
-    pub t: f64,
     pub mat: Arc<dyn Material>,
+    pub t: f64,
     pub front_face: bool,
 }
 
 impl HitRecord {
     //    pub fn new() -> HitRecord {
-     //   Default::default()
+    //   Default::default()
     //    }
 
     pub fn set_face_normal(&mut self, r: &Ray, outward_normal: Vec3) {
